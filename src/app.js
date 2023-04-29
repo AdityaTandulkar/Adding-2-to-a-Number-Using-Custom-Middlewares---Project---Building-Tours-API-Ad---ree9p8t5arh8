@@ -12,6 +12,11 @@ app.use(express.json());
 function add2(req, res, next) {
 
     //Write Your Code here
+    num = parseInt(req.query.num);
+    if (typeof num === "number") {
+        req.query.num = num + 2;
+    }
+    next();
     
 }
 
@@ -19,7 +24,7 @@ app.get('/', add2, (req, res) => {
     
     //num should be replaced by num+2 from the get request route
     const data = {
-        "num" : 5 
+        "num" : req.query.num 
     };
     
     res.send(JSON.stringify(data));
